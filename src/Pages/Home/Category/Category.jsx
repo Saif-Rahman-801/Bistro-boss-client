@@ -25,16 +25,16 @@ const Category = () => {
           <img src={slide1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide2} alt="" />{" "}
+          <img src={slide2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide3} alt="" />{" "}
+          <img src={slide3} alt="" />
         </SwiperSlide>
         <SwiperSlide>
           <img src={slide4} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide5} alt="" />{" "}
+          <img src={slide5} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
