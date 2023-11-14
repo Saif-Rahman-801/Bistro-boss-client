@@ -1,4 +1,20 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const navOptions = (
+    <>
+      <li>
+        <Link to="/">Home </Link>
+      </li>
+      <li>
+        <Link to="/menu">Our Menu</Link>
+      </li>
+      <li>
+        <a>Item 3</a>
+      </li>
+    </>
+  );
+
   return (
     <div>
       <div className="navbar fixed z-10 container bg-black text-white bg-opacity-30">
@@ -24,48 +40,27 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2 text-white">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
+              {navOptions}
+              {/* <li>
+                <Link to="/menu">Our Menu</Link>
               </li>
               <li>
                 <a>Item 3</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">Bistro-Boss </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
+            {navOptions}
+            {/* <li>
+              <Link to="/menu">Our Menu</Link>
             </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 text-white">
-                  <li className="text-white">
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
+
             <li>
               <a>Item 3</a>
-            </li>
+            </li> */}
           </ul>
         </div>
         {/* <div className="navbar-end">
