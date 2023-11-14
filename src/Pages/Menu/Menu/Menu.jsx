@@ -27,7 +27,7 @@ const Menu = () => {
       <MenuCategory items={pizza} title={`pizza`} coverImg={pizzaImg} />
       <MenuCategory items={soup} title={`soup`} coverImg={soupImg} />
       <MenuCategory items={salad} title={`salad`} coverImg={saladImg} />
-      {/* <MenuCategory items={offered} /> */}git 
+      {/* <MenuCategory items={offered} /> */}
     </div>
   );
 };
