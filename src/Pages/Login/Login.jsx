@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -13,6 +13,10 @@ const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -26,6 +30,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
         console.log(user);
         /*  Swal.fire({
             title: 'User Login Successful.',
