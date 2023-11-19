@@ -1,15 +1,39 @@
 import PropTypes from "prop-types";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 const FoodCard = ({ item }) => {
-  const { name, image, price, recipe } = item;
+  const { name, image, price, recipe, _id } = item;
   const navigate = useNavigate();
-  const {user} = useAuth()
+  const { user } = useAuth();
+  const location = useLocation();
+
   const handleAddToCart = (food) => {
-    // console.log(food, user.email);
-    if(user && user.email){
-      // -> send item data to the database
+    console.log(food);
+    if (user && user.email) {
+
+      const cartItem = {
+        menuId: _id,
+        email: user.email,
+        name,
+        image,
+        price,
+      };
+
+      axios.post("http://localhost:5000/carts", cartItem)
+      .then((res) => {
+        console.log(res.data);
+        if(res.data.insertedId){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${name} added to your cart`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
 
     } else {
       Swal.fire({
@@ -19,19 +43,13 @@ const FoodCard = ({ item }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Please Login"
+        confirmButtonText: "Please Login",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login")
-          /* Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          }); */
+          navigate("/login", { state: { from: location } });
         }
       });
     }
-
   };
   return (
     <div className="card w-96 bg-base-100 shadow-xl ">

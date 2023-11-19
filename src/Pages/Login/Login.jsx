@@ -2,26 +2,26 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
+// import {
+//   loadCaptchaEnginge,
+//   LoadCanvasTemplate,
+//   validateCaptcha,
+// } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
-  const [disabled, setDisabled] = useState(true);
+  // const captchaRef = useRef(null);
+  // const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
-  useEffect(() => {
+  /* useEffect(() => {
     loadCaptchaEnginge(6);
-  }, []);
+  }, []); */
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -46,14 +46,14 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleCaptcha = () => {
+ /*  const handleCaptcha = () => {
     const user_captcha_value = captchaRef.current.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  };
+  }; */
 
   return (
     <>
@@ -99,7 +99,7 @@ const Login = () => {
                   </a>
                 </label>
               </div>
-              <div className="form-control">
+              {/* <div className="form-control">
                 <label className="label">
                   <LoadCanvasTemplate />
                 </label>
@@ -116,11 +116,11 @@ const Login = () => {
                 >
                   Validate
                 </button>
-              </div>
+              </div> */}
               <div className="form-control mt-6">
                 {/* TODO: apply disabled for re captcha */}
                 <input
-                  disabled={disabled}
+                  // disabled={disabled}
                   className="btn btn-primary"
                   type="submit"
                   value="Login"
