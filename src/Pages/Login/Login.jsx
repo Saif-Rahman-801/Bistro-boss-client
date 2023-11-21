@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin";
 
 const Login = () => {
   // const captchaRef = useRef(null);
@@ -125,6 +126,9 @@ const Login = () => {
                   type="submit"
                   value="Login"
                 />
+              </div>
+              <div className="form-control mt-6">
+                <SocialLogin />
               </div>
             </form>
             <p>

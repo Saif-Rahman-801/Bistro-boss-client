@@ -21,36 +21,42 @@ export const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu />
+        element: <Menu />,
       },
       {
         path: "/order/:category",
-        element: <Order />
+        element: <Order />,
       },
       {
         path: "/login",
-        element: <Login />
-      }, 
+        element: <Login />,
+      },
       {
         path: "/signup",
-        element: <SignUp />
+        element: <SignUp />,
       },
       {
         path: "/secret",
-        element: <PrivateRoute>
-          <Secret />
-        </PrivateRoute>
-      }
+        element: (
+          <PrivateRoute>
+            <Secret />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/cart",
-        element: <Cart />
-      }
-    ]
-  }
+        element: <Cart />,
+      },
+    ],
+  },
 ]);
