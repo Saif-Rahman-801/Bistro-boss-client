@@ -1,13 +1,41 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Cart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   //   console.log(cart);
 
   const totalPrice = cart.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.price;
   }, 0);
+
+  const handleDlt = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${_id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -55,7 +83,10 @@ const Cart = () => {
                   <h2 className="font-medium">${item.price}</h2>
                 </td>
                 <th>
-                  <button className="btn btn-ghost btn-lg text-red-600">
+                  <button
+                    onClick={() => handleDlt(item._id)}
+                    className="btn btn-ghost btn-lg text-red-600"
+                  >
                     <FaTrashAlt />
                   </button>
                 </th>
