@@ -5,6 +5,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin";
 
 const SignUp = () => {
   const {
@@ -115,6 +116,9 @@ const SignUp = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign up</button>
+            </div>
+            <div className="form-control mt-6">
+              <SocialLogin />
             </div>
           </form>
         </div>
